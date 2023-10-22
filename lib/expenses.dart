@@ -25,33 +25,42 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
         title: 'Pepsi',
         amount: 23,
         date: DateTime.now(),
-        expenseType: ExpenseType.transport),
+        expenseType: ExpenseType.bills),
   ];
 
   @override
   Widget build(context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          backgroundColor: const Color.fromARGB(255, 2, 69, 193),
+          actions: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(Icons.add),
+            ),
+          ],
+        ),
         body: Container(
           decoration: const BoxDecoration(
-            // gradient: LinearGradient(
-            //   colors: [ Color.fromARGB(255, 79, 188, 82),
-            //    Color.fromARGB(255, 255, 242, 121)],
-            //     begin: Alignment.topLeft,
-            //     end: Alignment.bottomRight
-            // ),
-          ),
-          child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text("Title"),
-                  Expanded(child: ExpensesList(allExpenses: expenses)),
-                ],
+              // gradient: LinearGradient(
+              //   colors: [ Color.fromARGB(255, 79, 188, 82),
+              //    Color.fromARGB(255, 255, 242, 121)],
+              //     begin: Alignment.topLeft,
+              //     end: Alignment.bottomRight
+              // ),
               ),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text("Title"),
+                Expanded(child: ExpensesList(allExpenses: expenses)),
+              ],
             ),
           ),
         ),
+      ),
     );
   }
 }
