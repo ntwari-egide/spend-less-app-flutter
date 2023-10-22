@@ -33,7 +33,12 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
+          toolbarHeight: 70,
           backgroundColor: const Color.fromARGB(255, 2, 69, 193),
+          title: const Text('Spend Less', style: TextStyle(
+            fontSize: 25,
+            fontWeight: FontWeight.bold
+          ),),
           actions: [
             IconButton(
               onPressed: () {},
