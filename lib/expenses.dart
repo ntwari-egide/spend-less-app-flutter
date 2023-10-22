@@ -28,6 +28,14 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
         expenseType: ExpenseType.bills),
   ];
 
+  void _openOverlayForm() {
+    print("button clicked .....");
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => const Text("Show Text..."),
+    );
+  }
+
   @override
   Widget build(context) {
     return MaterialApp(
@@ -35,13 +43,13 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
         appBar: AppBar(
           toolbarHeight: 70,
           backgroundColor: const Color.fromARGB(255, 2, 69, 193),
-          title: const Text('Spend Less', style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold
-          ),),
+          title: const Text(
+            'Spend Less',
+            style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+          ),
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: _openOverlayForm,
               icon: const Icon(Icons.add),
             ),
           ],
@@ -59,7 +67,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Title"),
+                const Text("Chart"),
                 Expanded(child: ExpensesList(allExpenses: expenses)),
               ],
             ),
