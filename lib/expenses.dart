@@ -29,11 +29,17 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
         expenseType: ExpenseType.bills),
   ];
 
+  void addNewExpense (Expense newExpense) {
+    setState(() {
+      expenses.add(newExpense);
+    });
+  }
+
   void _openOverlayForm() {
     print("button clicked .....");
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => const NewExpenseWiget(),
+      builder: (ctx) => NewExpenseWiget(addNewExpense: addNewExpense,),
     );
   }
 
