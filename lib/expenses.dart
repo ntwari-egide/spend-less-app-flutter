@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:spend_less/model/expenses.dart';
+import 'package:spend_less/view/expenses_list.dart';
 
 class ExpensesWidget extends StatefulWidget {
   const ExpensesWidget({super.key});
@@ -29,9 +30,17 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       home: Scaffold(
-        body: Text("new app"),
+        body: SizedBox(
+          width: double.infinity,
+          child: Column(
+            children: [
+              const Text("Chat app"),
+              ExpensesList(allExpenses: expenses),
+            ],
+          ),
+        ),
       ),
     );
   }
