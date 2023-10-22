@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:spend_less/model/expenses.dart';
 import 'package:spend_less/widget/expenses/expenses_list.dart';
+import 'package:spend_less/widget/expenses/new_expense.dart';
 
 class ExpensesWidget extends StatefulWidget {
   const ExpensesWidget({super.key});
@@ -32,7 +33,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
     print("button clicked .....");
     showModalBottomSheet(
       context: context,
-      builder: (ctx) => const Text("Show Text..."),
+      builder: (ctx) => const NewExpenseWiget(),
     );
   }
 
@@ -67,8 +68,9 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text("Chart"),
-                Expanded(child: ExpensesList(allExpenses: expenses)),
+                NewExpenseWiget()
+                // const Text("Chart"),
+                // Expanded(child: ExpensesList(allExpenses: expenses)),
               ],
             ),
           ),

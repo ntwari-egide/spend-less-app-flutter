@@ -1,6 +1,7 @@
 // statefull widget for the new expense
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class NewExpenseWiget extends StatefulWidget {
 
@@ -15,9 +16,14 @@ class NewExpenseWiget extends StatefulWidget {
 class _NewExpensesWidgetState extends State<NewExpenseWiget> {
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
-         Text("Check the form of new expense..."),
+        TextFormField(
+          decoration: const InputDecoration(
+            labelText: "Enter item name",
+          ),
+          keyboardType: TextInputType.number,
+        )
       ],
     );
   }
