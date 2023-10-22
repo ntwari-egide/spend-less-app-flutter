@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:spend_less/model/expenses.dart';
-import 'package:spend_less/view/expenses_list.dart';
+import 'package:spend_less/widget/expenses_list.dart';
 
 class ExpensesWidget extends StatefulWidget {
   const ExpensesWidget({super.key});
@@ -29,19 +29,29 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
   ];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(context) {
     return MaterialApp(
       home: Scaffold(
-        body: SizedBox(
-          width: double.infinity,
-          child: Column(
-            children: [
-              const Text("Chat app"),
-              ExpensesList(allExpenses: expenses),
-            ],
+        body: Container(
+          decoration: const BoxDecoration(
+            // gradient: LinearGradient(
+            //   colors: [ Color.fromARGB(255, 79, 188, 82),
+            //    Color.fromARGB(255, 255, 242, 121)],
+            //     begin: Alignment.topLeft,
+            //     end: Alignment.bottomRight
+            // ),
+          ),
+          child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Text("Title"),
+                  Expanded(child: ExpensesList(allExpenses: expenses)),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
     );
   }
 }
