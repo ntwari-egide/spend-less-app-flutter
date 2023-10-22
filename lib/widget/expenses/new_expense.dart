@@ -7,7 +7,7 @@ import 'package:spend_less/model/expenses.dart';
 class NewExpenseWiget extends StatefulWidget {
   const NewExpenseWiget({super.key, required this.addNewExpense});
 
-  final void Function(Expense newExpense)  addNewExpense;
+  final void Function(Expense newExpense) addNewExpense;
 
   @override
   State<NewExpenseWiget> createState() {
@@ -24,7 +24,7 @@ class _NewExpensesWidgetState extends State<NewExpenseWiget> {
   // }
 
   //You can easily use controller to handle user inputs
-  
+
   final _titleController = TextEditingController();
   final _amountController = TextEditingController();
 
@@ -38,7 +38,29 @@ class _NewExpensesWidgetState extends State<NewExpenseWiget> {
 
   // pushing new item in the expenses
   void _handleSaveNewExpense() {
-    Expense newExpense = Expense(title: _titleController.text, amount: double.parse(_amountController.text), date: DateTime.now(), expenseType: ExpenseType.food);
+
+    // write validation if condition for these validations
+    // 1: invalid price number 2: empty fields
+
+    if (_titleController.text.isEmpty || _amountController.text.isEmpty || double.parse(_amountController.text) <= 0) {
+      showDialog(context: context, builder: (ctx) => AlertDialog(
+        title: const Text("Invalid Input"),
+        content: const Text("Please enter valid title and amount"),
+        actions: [
+          TextButton(onPressed: (){
+            Navigator.of(ctx).pop();
+          }, child: const Text("Okay"))
+        ],
+      ));
+      
+      return;
+    }
+
+    Expense newExpense = Expense(
+        title: _titleController.text,
+        amount: double.parse(_amountController.text),
+        date: DateTime.now(),
+        expenseType: ExpenseType.food);
 
     widget.addNewExpense(newExpense);
   }
@@ -58,30 +80,55 @@ class _NewExpensesWidgetState extends State<NewExpenseWiget> {
             ),
             keyboardType: TextInputType.text,
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           TextField(
             maxLength: 30,
             // onChanged: _saveTitle,
             controller: _amountController,
+
             decoration: const InputDecoration(
+              prefixText: '\$ ',
               labelText: "Enter price",
             ),
             keyboardType: TextInputType.number,
           ),
-          OutlinedButton(
-            // onPressed: () {
-            //   // print("Content: $expenseTitle");
-            //   print("Content: ${_titleController.text.toLowerCase()}");
-            // },
-            onPressed: _handleSaveNewExpense,
-            style: OutlinedButton.styleFrom(
-              foregroundColor: const Color.fromARGB(255, 21, 115, 193),
-              padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20)
-            ),
-            child: const Text(
-              "Add expense",
-              style: TextStyle(fontSize: 20),
-            ),
+          Row(
+            children: [
+              OutlinedButton(
+                onPressed: (){
+                  //closing a modal
+                  Navigator.pop(context);
+                },
+                style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 193, 64, 21),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 20)),
+                child: const Text(
+                  "Close",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+              const SizedBox(
+                width: 20,
+              ),
+              OutlinedButton(
+                // onPressed: () {
+                //   // print("Content: $expenseTitle");
+                //   print("Content: ${_titleController.text.toLowerCase()}");
+                // },
+                onPressed: _handleSaveNewExpense,
+                style: OutlinedButton.styleFrom(
+                    foregroundColor: const Color.fromARGB(255, 21, 115, 193),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 30, vertical: 20)),
+                child: const Text(
+                  "Add expense",
+                  style: TextStyle(fontSize: 20),
+                ),
+              ),
+            ],
           ),
         ],
       ),
