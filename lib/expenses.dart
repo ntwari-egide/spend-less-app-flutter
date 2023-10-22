@@ -39,8 +39,7 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
 
   @override
   Widget build(context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           toolbarHeight: 70,
           backgroundColor: const Color.fromARGB(255, 2, 69, 193),
@@ -68,14 +67,12 @@ class _ExpensesWidgetState extends State<ExpensesWidget> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                NewExpenseWiget()
-                // const Text("Chart"),
-                // Expanded(child: ExpensesList(allExpenses: expenses)),
+                const Text("Chart"),
+                Expanded(child: ExpensesList(allExpenses: expenses)),
               ],
             ),
           ),
         ),
-      ),
     );
   }
 }
